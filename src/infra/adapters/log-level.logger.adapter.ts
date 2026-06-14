@@ -50,6 +50,21 @@ export class LogLevelLoggerAdapter implements LoggerProtocol {
     return env.BUN_ENV !== "production"; // default: pretty em dev, JSON em prod
   }
 
+  private serializeValue(value: unknown): unknown {
+    if (value instanceof Error) {
+      return { name: value.name, message: value.message, stack: value.stack };
+    }
+    return value;
+  }
+
+  private serializeMeta(
+    meta: Record<string, unknown>,
+  ): Record<string, unknown> {
+    return Object.fromEntries(
+      Object.entries(meta).map(([k, v]) => [k, this.serializeValue(v)]),
+    );
+  }
+
   private emit(
     level: Exclude<Level, "silent">,
     message: string,
@@ -63,7 +78,13 @@ export class LogLevelLoggerAdapter implements LoggerProtocol {
         this.logger[level](message);
       }
     } else {
-      this.logger[level](JSON.stringify({ level, message, ...(meta ?? {}) }));
+      this.logger[level](
+        JSON.stringify({
+          level,
+          message,
+          ...(meta ? this.serializeMeta(meta) : {}),
+        }),
+      );
     }
   }
 
