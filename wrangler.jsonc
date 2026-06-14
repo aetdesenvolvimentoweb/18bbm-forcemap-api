@@ -1,0 +1,41 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "18bbm-forcemap-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-04-14",
+  "compatibility_flags": ["nodejs_compat"],
+  "dev": {
+    "port": 3333,
+  },
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+    },
+  },
+  "vars": {
+    "BUN_ENV": "production",
+    "LOG_PRETTY": "true",
+    "LOG_LEVEL": "warn",
+    "RATE_LIMIT_LOGIN_IP_MAX_ATTEMPTS": 5,
+    "RATE_LIMIT_LOGIN_USER_MAX_ATTEMPTS": 3,
+    "RATE_LIMIT_LOGIN_WINDOW_MINUTES": 10,
+    "CORS_ALLOWED_ORIGINS_PROD": "https://forcemap-web.pages.dev",
+    "CORS_ALLOW_NO_ORIGIN_PROD": "false",
+    "CORS_ALLOW_CREDENTIALS_PROD": "false",
+    "CORS_ALLOWED_METHODS_PROD": "GET,POST,PUT,DELETE,PATCH",
+    "CORS_ALLOWED_HEADERS_PROD": "Content-Type,Authorization,X-Requested-With,Accept",
+    "CORS_EXPOSED_HEADERS_PROD": "",
+    "CORS_MAX_AGE_PROD": "86400",
+    "JWT_ACCESS_EXPIRY": "15m",
+    "JWT_REFRESH_EXPIRY": "7d",
+  },
+  "d1_databases": [
+    {
+      "binding": "18bbm-forcemap",
+      "database_name": "18bbm-forcemap-db",
+      "database_id": "f7ce0141-1d10-426e-b6b6-423701170fa4",
+      "migrations_dir": "drizzle",
+    },
+  ],
+}
