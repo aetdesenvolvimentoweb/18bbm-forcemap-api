@@ -7,8 +7,8 @@
     "deploy": "wrangler deploy --minify",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "db:generate": "drizzle-kit generate",
-    "db:migrate:local": "wrangler d1 migrations apply forcemap --local",
-    "db:migrate:remote": "wrangler d1 migrations apply forcemap --remote",
+    "db:migrate:local": "wrangler d1 migrations apply 18bbm_forcemap_db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply 18bbm_forcemap_db --remote",
     "db:seed:local": "bun run scripts/seed.ts --local",
     "db:seed:remote": "bun run scripts/seed.ts --remote",
     "db:studio": "drizzle-kit studio"
