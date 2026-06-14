@@ -32,7 +32,7 @@
   },
   "d1_databases": [
     {
-      "binding": "_18bbm_forcemap_db",
+      "binding": "18bbm_forcemap_db",
       "database_name": "18bbm_forcemap_db",
       "database_id": "077f6924-fc43-4362-acda-7a6dbca5ca02",
       "migrations_dir": "drizzle",
